@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+    <script src="./semantic.min.js"></script>
+    <link rel="stylesheet" href="./semantic.min.css">
+    <link rel="stylesheet" href="./item.min.css">
+  </head>
+  <body>
+    <div class="ui grid container" style="margin-top: 50px">
+      <h4>g00gle</h4>
+      <div id="app"></div>
+      <div class="ui top attached tabular menu">
+        <div class="active item">ALL</div>
+        <div class="item">LOGBOT</div>
+        <div class="item">REPO</div>
+        <div class="item">ISSUE</div>
+      </div>
+      <div class="ui bottom attached active tab" id="result" style="padding-top: 20px;">
+        <div id="result"></div>
+      </div>
+    </div>
+    <script src="./build.js"></script>
+  </body>
+</html>
