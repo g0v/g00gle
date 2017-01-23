@@ -35,13 +35,13 @@ function renderResult (result) {
 
 function renderItem (item) {
   return yo`<div class="item">
-    <div class="content">
+    <div class="content" style="max-width: 100%;">
       <a class="header blue" href="${item.url}">${item.title}</a>
       <div class="meta">
         <span>${item.source}</span>
       </div>
       <div class="description">
-        <pre>${item.content}</pre>
+        <pre style="word-wrap: break-word; white-space: pre-wrap; max-width: 20%">${item.content}</pre>
       </div>
       <div class="extra">
         Additional Details
