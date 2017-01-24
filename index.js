@@ -12,11 +12,11 @@ function search (query) {
     return x.json()
   }).then(res => {
     result = res
-    yo.update(document.querySelector('#result'), renderResult(result))
+    yo.update(document.querySelector('#result'), renderResult(result, query))
   })
 }
 
-function renderResult (result) {
+function renderResult (result, keyword) {
   if (!result) return null
 
   console.log('render', result)
@@ -26,13 +26,13 @@ function renderResult (result) {
   })
   var el = yo`<div id="result">
     <div class="ui very relaxed items">
-      ${rs.map(renderItem)}
+      ${rs.map(item => renderItem(item, keyword))}
     </div>
   </div>`
   return el
 }
 
-function renderItem (item) {
+function renderItem (item, keyword) {
   return yo`<div class="item">
     <div class="content" style="max-width: 100%;">
       <a class="header blue" href="${item.url}">${item.title}</a>
@@ -40,10 +40,9 @@ function renderItem (item) {
         <span>${item.source}</span>
       </div>
       <div class="description">
-        <pre style="word-wrap: break-word; white-space: pre-wrap; max-width: 20%">${item.content}</pre>
+        <pre style="word-wrap: break-word; white-space: pre-wrap; max-width: 60%">${highlight(item.content, keyword)}</pre>
       </div>
       <div class="extra">
-        Additional Details
       </div>
     </div>
   </div>`
@@ -68,3 +67,17 @@ function render () {
 }
 
 render()
+
+function highlight (text, keyword) {
+  const padding = 50
+  var first = text.indexOf(keyword)
+  if (first === -1) return text
+
+  var last = text.lastIndexOf(keyword)
+
+  var pre = first - padding > 0 ? first - padding : 0
+  var post = (last + keyword.length + padding < text.length) ? (last + keyword.length + padding) : text.length
+  console.log(first, last, pre, post, keyword.length)
+
+  return text.slice(pre, post)
+}
